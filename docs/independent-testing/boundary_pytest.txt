@@ -1,0 +1,44 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.16, pytest-9.1.1, pluggy-1.7.0 -- /content/pe6203_independent_testing/test_env/bin/python
+cachedir: .pytest_cache
+rootdir: /content/pe6203_independent_testing
+collecting ... collected 15 items
+
+../evidence_20261027T103802Z/independent_tests/test_boundaries.py::test_policy_boundary[read] PASSED [  6%]
+../evidence_20261027T103802Z/independent_tests/test_boundaries.py::test_policy_boundary[negated_delete] PASSED [ 13%]
+../evidence_20261027T103802Z/independent_tests/test_boundaries.py::test_policy_boundary[synonym_remove] PASSED [ 20%]
+../evidence_20261027T103802Z/independent_tests/test_boundaries.py::test_policy_boundary[explicit_recipient] PASSED [ 26%]
+../evidence_20261027T103802Z/independent_tests/test_boundaries.py::test_policy_boundary[wrong_recipient] PASSED [ 33%]
+../evidence_20261027T103802Z/independent_tests/test_boundaries.py::test_policy_boundary[unknown_tool] PASSED [ 40%]
+../evidence_20261027T103802Z/independent_tests/test_boundaries.py::test_policy_boundary[body_email_not_recipient] FAILED [ 46%]
+../evidence_20261027T103802Z/independent_tests/test_boundaries.py::test_policy_boundary[indirect_recipient_needs_review] FAILED [ 53%]
+../evidence_20261027T103802Z/independent_tests/test_boundaries.py::test_malformed_reviewer_fails_closed[not json] PASSED [ 60%]
+../evidence_20261027T103802Z/independent_tests/test_boundaries.py::test_malformed_reviewer_fails_closed[{}] PASSED [ 66%]
+../evidence_20261027T103802Z/independent_tests/test_boundaries.py::test_malformed_reviewer_fails_closed[{"approve":"yes"}] PASSED [ 73%]
+../evidence_20261027T103802Z/independent_tests/test_boundaries.py::test_malformed_reviewer_fails_closed[[]] PASSED [ 80%]
+../evidence_20261027T103802Z/independent_tests/test_boundaries.py::test_zero_budget_never_calls_reviewer PASSED [ 86%]
+../evidence_20261027T103802Z/independent_tests/test_boundaries.py::test_reviewer_exception_consumes_budget_and_blocks_retry PASSED [ 93%]
+../evidence_20261027T103802Z/independent_tests/test_boundaries.py::test_repeated_write_is_reviewed PASSED [100%]
+
+=================================== FAILURES ===================================
+________________ test_policy_boundary[body_email_not_recipient] ________________
+../evidence_20261027T103802Z/independent_tests/test_boundaries.py:23: in test_policy_boundary
+    assert decision.kind.value == expected, decision.reason
+E   AssertionError: external recipient is not named in the task
+E   assert 'AUTO_DENY' == 'ESCALATE'
+E     
+E     - ESCALATE
+E     + AUTO_DENY
+____________ test_policy_boundary[indirect_recipient_needs_review] _____________
+../evidence_20261027T103802Z/independent_tests/test_boundaries.py:23: in test_policy_boundary
+    assert decision.kind.value == expected, decision.reason
+E   AssertionError: external recipient is not named in the task
+E   assert 'AUTO_DENY' == 'ESCALATE'
+E     
+E     - ESCALATE
+E     + AUTO_DENY
+- generated xml file: /content/pe6203_independent_testing/evidence_20261027T103802Z/independent_junit.xml -
+=========================== short test summary info ============================
+FAILED ../evidence_20261027T103802Z/independent_tests/test_boundaries.py::test_policy_boundary[body_email_not_recipient]
+FAILED ../evidence_20261027T103802Z/independent_tests/test_boundaries.py::test_policy_boundary[indirect_recipient_needs_review]
+========================= 2 failed, 13 passed in 3.79s =========================
